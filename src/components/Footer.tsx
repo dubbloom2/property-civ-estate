@@ -1,12 +1,8 @@
 import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    section?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -14,63 +10,63 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-accent rounded-md flex items-center justify-center">
-                <span className="text-accent-foreground font-bold text-sm">P</span>
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center transition-luxury group-hover:scale-110">
+                <span className="text-accent-foreground font-bold text-lg">P</span>
               </div>
-              <span className="text-xl font-bold">Property Immobilier</span>
-            </div>
+              <span className="text-2xl font-bold">Property Immobilier</span>
+            </Link>
             <p className="text-primary-foreground/80 leading-relaxed">
               Votre partenaire immobilier de confiance en Côte d'Ivoire. 
-              Agent agréé spécialisé dans tous vos projets immobiliers.
+              Agent agréé spécialisé dans l'immobilier de luxe et les projets d'exception.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-accent/20 transition-colors">
-                <Facebook className="w-5 h-5" />
+              <a href="#" className="w-12 h-12 bg-primary-foreground/10 rounded-xl flex items-center justify-center hover:bg-accent/20 transition-luxury group">
+                <Facebook className="w-6 h-6 group-hover:scale-110 transition-luxury" />
               </a>
-              <a href="#" className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-accent/20 transition-colors">
-                <Instagram className="w-5 h-5" />
+              <a href="#" className="w-12 h-12 bg-primary-foreground/10 rounded-xl flex items-center justify-center hover:bg-accent/20 transition-luxury group">
+                <Instagram className="w-6 h-6 group-hover:scale-110 transition-luxury" />
               </a>
-              <a href="#" className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center hover:bg-accent/20 transition-colors">
-                <Linkedin className="w-5 h-5" />
+              <a href="#" className="w-12 h-12 bg-primary-foreground/10 rounded-xl flex items-center justify-center hover:bg-accent/20 transition-luxury group">
+                <Linkedin className="w-6 h-6 group-hover:scale-110 transition-luxury" />
               </a>
             </div>
           </div>
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-accent">Navigation</h4>
-            <nav className="flex flex-col space-y-2">
-              <button
-                onClick={() => scrollToSection("accueil")}
-                className="text-left text-primary-foreground/80 hover:text-accent transition-colors"
+            <h4 className="text-xl font-semibold text-accent">Navigation</h4>
+            <nav className="flex flex-col space-y-3">
+              <Link
+                to="/"
+                className="text-left text-primary-foreground/80 hover:text-accent transition-luxury text-lg"
               >
                 Accueil
-              </button>
-              <button
-                onClick={() => scrollToSection("apropos")}
-                className="text-left text-primary-foreground/80 hover:text-accent transition-colors"
+              </Link>
+              <Link
+                to="/a-propos"
+                className="text-left text-primary-foreground/80 hover:text-accent transition-luxury text-lg"
               >
                 À propos
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                className="text-left text-primary-foreground/80 hover:text-accent transition-colors"
+              </Link>
+              <Link
+                to="/services"
+                className="text-left text-primary-foreground/80 hover:text-accent transition-luxury text-lg"
               >
                 Services
-              </button>
-              <button
-                onClick={() => scrollToSection("faq")}
-                className="text-left text-primary-foreground/80 hover:text-accent transition-colors"
+              </Link>
+              <Link
+                to="/faq"
+                className="text-left text-primary-foreground/80 hover:text-accent transition-luxury text-lg"
               >
                 FAQ
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-left text-primary-foreground/80 hover:text-accent transition-colors"
+              </Link>
+              <Link
+                to="/contact"
+                className="text-left text-primary-foreground/80 hover:text-accent transition-luxury text-lg"
               >
                 Contact
-              </button>
+              </Link>
             </nav>
           </div>
 

@@ -36,22 +36,35 @@ All colors MUST be HSL.
     --input: 220 15% 92%;
     --ring: 220 100% 29%;
 
-    /* Custom Property Immobilier tokens */
+    /* Custom Property Immobilier luxury tokens */
     --property-navy: 220 100% 29%;
-    --property-gold: 45 90% 55%;
-    --property-light: 220 15% 97%;
-    --property-text: 220 15% 25%;
+    --property-navy-dark: 220 100% 15%;
+    --property-gold: 45 95% 58%;
+    --property-gold-light: 45 100% 68%;
+    --property-gold-dark: 40 90% 48%;
+    --property-light: 220 15% 98%;
+    --property-text: 220 15% 15%;
     --property-text-light: 220 10% 50%;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(220 100% 29%), hsl(220 80% 35%));
-    --gradient-gold: linear-gradient(135deg, hsl(45 90% 55%), hsl(40 85% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 100% 29% / 0.95), hsl(220 80% 35% / 0.9));
+    /* Luxury Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 29%), hsl(220 90% 35%), hsl(220 100% 29%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 95% 58%), hsl(45 100% 68%), hsl(40 90% 48%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 100% 29% / 0.95), hsl(220 90% 35% / 0.9), hsl(220 100% 15% / 0.95));
+    --gradient-luxury: linear-gradient(135deg, hsl(220 100% 29%), hsl(45 95% 58%), hsl(220 100% 29%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 98%));
+    --gradient-text: linear-gradient(135deg, hsl(220 100% 29%), hsl(45 95% 58%));
     
-    /* Shadows */
-    --shadow-luxury: 0 20px 50px hsl(220 100% 29% / 0.15);
-    --shadow-card: 0 4px 20px hsl(220 100% 29% / 0.08);
-    --shadow-gold: 0 8px 30px hsl(45 90% 55% / 0.2);
+    /* Luxury Shadows */
+    --shadow-luxury: 0 25px 60px hsl(220 100% 29% / 0.15), 0 10px 30px hsl(45 95% 58% / 0.1);
+    --shadow-card: 0 8px 25px hsl(220 100% 29% / 0.08), 0 3px 10px hsl(220 100% 29% / 0.06);
+    --shadow-gold: 0 15px 40px hsl(45 95% 58% / 0.25), 0 5px 15px hsl(45 95% 58% / 0.15);
+    --shadow-hover: 0 35px 80px hsl(220 100% 29% / 0.2), 0 15px 40px hsl(45 95% 58% / 0.15);
+    --shadow-inset: inset 0 1px 3px hsl(220 100% 29% / 0.1);
+
+    /* Animation Variables */
+    --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-quick: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
     --radius: 0.5rem;
 
@@ -117,7 +130,7 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -136,6 +149,21 @@ All colors MUST be HSL.
     background: var(--gradient-hero);
   }
   
+  .gradient-luxury {
+    background: var(--gradient-luxury);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  .gradient-text {
+    background: var(--gradient-text);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
   .shadow-luxury {
     box-shadow: var(--shadow-luxury);
   }
@@ -146,5 +174,49 @@ All colors MUST be HSL.
   
   .shadow-gold {
     box-shadow: var(--shadow-gold);
+  }
+  
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+  
+  .transition-luxury {
+    transition: var(--transition-luxury);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-quick {
+    transition: var(--transition-quick);
+  }
+}
+
+@layer components {
+  .luxury-card {
+    @apply bg-white/95 backdrop-blur-sm rounded-2xl shadow-card border border-white/20 transition-luxury hover:shadow-luxury hover:scale-[1.02];
+  }
+  
+  .luxury-button {
+    @apply relative overflow-hidden bg-accent text-accent-foreground font-semibold rounded-xl px-8 py-4 transition-luxury hover:shadow-gold hover:scale-105;
+  }
+  
+  .luxury-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-gold opacity-0 transition-opacity duration-300;
+  }
+  
+  .luxury-button:hover::before {
+    @apply opacity-10;
+  }
+  
+  .page-transition {
+    @apply animate-fade-in;
+  }
+  
+  .parallax-bg {
+    transform: translateZ(0);
+    will-change: transform;
   }
 }
